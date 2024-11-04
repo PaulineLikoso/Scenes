@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmflcdbuwkjlx"]
+
+[ext_resource type="Script" path="res://Nojo Life/Scenes/crop.gd" id="1_olqlh"]
+[ext_resource type="Texture2D" uid="uid://db8pdxgpxxbr2" path="res://Nojo Life/Assets/farming/crops.png" id="2_py323"]
+[ext_resource type="Script" path="res://Nojo Life/Scenes/animated_sprite_2d.gd" id="3_af1ib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5g2a"]
+size = Vector2(18, 17.875)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqpe"]
+atlas = ExtResource("2_py323")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwdw2"]
+atlas = ExtResource("2_py323")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cru6u"]
+atlas = ExtResource("2_py323")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd3hi"]
+atlas = ExtResource("2_py323")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ymto"]
+atlas = ExtResource("2_py323")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix6jm"]
+atlas = ExtResource("2_py323")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qjmr4"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwdw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cru6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd3hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ymto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix6jm")
+}],
+"loop": true,
+"name": &"pumpkin_growth",
+"speed": 1.5
+}]
+
+[node name="crop" type="Node2D"]
+script = ExtResource("1_olqlh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-25, 16.9375)
+shape = SubResource("RectangleShape2D_f5g2a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-24, 16)
+scale = Vector2(1, 1.01351)
+sprite_frames = SubResource("SpriteFrames_qjmr4")
+animation = &"pumpkin_growth"
+frame_progress = 0.984556
+script = ExtResource("3_af1ib")
